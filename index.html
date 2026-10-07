@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Comtal · Obrador Café · Carrer Comtal 21, Barcelona</title>
+<meta name="description" content="Obrador y cafetería en Carrer Comtal 21, Ciutat Vella. Bollería y pan horneados cada día, café de especialidad y bikinis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f6f1e7;
+    --paper-2: #ede5d5;
+    --ink: #221c17;
+    --ink-soft: #5d5247;
+    --red: #a8162b;      /* the red of the menu board */
+    --crust: #b8742f;
+    --rule: #d6cab4;
+    --cond: "Barlow Condensed", "Arial Narrow", sans-serif;
+    --serif: "Newsreader", Georgia, serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1.125rem/1.55 var(--serif);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: inherit; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 720px) { .wrap { padding: 0 32px; } }
+
+  /* language toggle: content is duplicated with data-lang spans */
+  html[lang="es"] [data-lang="en"],
+  html[lang="en"] [data-lang="es"] { display: none; }
+
+  /* ---------- top bar ---------- */
+  .bar {
+    border-bottom: 1px solid var(--ink);
+    font: 600 0.95rem/1 var(--cond);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 52px; }
+  .bar nav { display: flex; gap: 22px; }
+  .bar nav a { text-decoration: none; }
+  .bar nav a:hover { color: var(--red); }
+  .lang { display: flex; border: 1px solid var(--ink); }
+  .lang button {
+    font: inherit; letter-spacing: inherit; background: none; border: 0; color: var(--ink);
+    padding: 6px 9px; cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+  .bar-name { display: none; text-decoration: none; color: var(--red); font-weight: 700; }
+  @media (max-width: 560px) { .bar nav { display: none; } .bar-name { display: block; } }
+
+  /* ---------- masthead ---------- */
+  .mast { padding: 48px 0 40px; border-bottom: 1px solid var(--ink); }
+  .mast-top {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    font: 600 0.95rem/1.2 var(--cond); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft);
+  }
+  .mast h1 {
+    margin: 18px 0 0;
+    font: 700 clamp(4.2rem, 17vw, 11.5rem)/0.82 var(--cond);
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+  .mast h1 span { display: block; }
+  .mast h1 small {
+    display: block; margin-top: 14px;
+    font: italic 400 clamp(1.4rem, 3.4vw, 2.1rem)/1.1 var(--serif);
+    text-transform: none; letter-spacing: 0; color: var(--ink);
+  }
+  .mast-grid { display: grid; gap: 32px; margin-top: 40px; align-items: end; }
+  @media (min-width: 820px) { .mast-grid { grid-template-columns: 1.1fr 1fr; } }
+  .lede { font-size: 1.3rem; line-height: 1.45; max-width: 30ch; margin: 0; }
+  .lede em { color: var(--red); font-style: italic; }
+  .facts { margin: 22px 0 0; padding: 0; list-style: none; font: 500 1.05rem/1.4 var(--cond); letter-spacing: 0.04em; text-transform: uppercase; }
+  .facts li { padding: 9px 0; border-top: 1px dotted var(--ink-soft); display: flex; justify-content: space-between; gap: 16px; }
+  .facts li:last-child { border-bottom: 1px dotted var(--ink-soft); }
+  .facts b { font-weight: 700; }
+  .facts a { text-decoration: none; }
+  .facts a:hover { color: var(--red); }
+  .hero-photos { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .hero-photos figure { margin: 0; }
+  .hero-photos figure:nth-child(2) { margin-top: 48px; }
+  .hero-photos img { aspect-ratio: 344 / 448; object-fit: cover; width: 100%; }
+  figcaption { font: italic 400 0.9rem/1.3 var(--serif); color: var(--ink-soft); margin-top: 6px; }
+
+  /* ---------- notice strip ---------- */
+  .strip {
+    background: var(--red); color: var(--paper);
+    font: 600 1.05rem/1.3 var(--cond); letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 12px 0;
+  }
+  .strip .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 24px; }
+
+  /* ---------- section heads ---------- */
+  section { padding: 72px 0; }
+  .head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 36px; border-bottom: 2px solid var(--ink); padding-bottom: 10px; }
+  .head .no { font: 700 1rem/1 var(--cond); color: var(--red); letter-spacing: 0.08em; }
+  .head h2 { margin: 0; font: 700 clamp(2.2rem, 6vw, 3.4rem)/0.95 var(--cond); text-transform: uppercase; }
+  .head p { margin: 0 0 0 auto; font-style: italic; color: var(--ink-soft); font-size: 1rem; text-align: right; }
+  @media (max-width: 640px) { .head { flex-wrap: wrap; } .head p { margin: 0; text-align: left; flex-basis: 100%; } }
+
+  /* ---------- obrador ---------- */
+  .obrador { display: grid; gap: 40px; }
+  @media (min-width: 820px) { .obrador { grid-template-columns: 1fr 1.15fr; align-items: start; } }
+  .obrador .copy p { margin: 0 0 1em; max-width: 40ch; }
+  .obrador .copy p:first-child::first-letter {
+    float: left; font: 700 4.6rem/0.8 var(--cond); color: var(--red); margin: 6px 10px 0 0;
+  }
+  .case { list-style: none; margin: 28px 0 0; padding: 0; columns: 2; column-gap: 28px; font: 500 1.1rem/1.2 var(--cond); text-transform: uppercase; letter-spacing: 0.04em; }
+  .case li { break-inside: avoid; padding: 8px 0; border-bottom: 1px solid var(--rule); }
+  .case li::before { content: "— "; color: var(--crust); }
+  .obrador-photos figure { margin: 0 auto; max-width: 420px; }
+  .obrador-photos img { width: 100%; }
+
+  /* ---------- menu board ---------- */
+  .board {
+    background: #fbfaf6;
+    border: 10px solid var(--ink);
+    padding: 32px 22px;
+    box-shadow: 0 1px 0 var(--rule);
+  }
+  @media (min-width: 720px) { .board { padding: 44px 44px 36px; } }
+  .cols { display: grid; gap: 32px 48px; }
+  @media (min-width: 900px) { .cols { grid-template-columns: 1.05fr 1fr 1.15fr; } }
+  .cols h3 { margin: 0 0 12px; font: 600 0.9rem/1 var(--cond); letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+  .items { list-style: none; margin: 0; padding: 0; }
+  .items li {
+    display: flex; align-items: baseline; gap: 8px;
+    font: 600 1.28rem/1.15 var(--cond); text-transform: uppercase; color: var(--red);
+    padding: 7px 0;
+  }
+  .items .n { max-width: 70%; }
+  .items .dots { flex: 1; border-bottom: 2px dotted rgba(168, 22, 43, 0.45); transform: translateY(-4px); min-width: 16px; }
+  .items .p { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .items .d { display: block; font: italic 400 0.92rem/1.3 var(--serif); text-transform: none; color: var(--ink-soft); margin-top: 2px; }
+  .notes { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 32px; margin-top: 30px; padding-top: 18px; border-top: 1px solid var(--rule); font: 600 1rem/1.3 var(--cond); text-transform: uppercase; letter-spacing: 0.04em; color: var(--red); }
+  .menu-foot { margin-top: 14px; font-size: 0.95rem; font-style: italic; color: var(--ink-soft); }
+
+  /* ---------- bikini feature ---------- */
+  .bikini { background: var(--ink); color: var(--paper); }
+  .bikini .head { border-color: var(--paper); }
+  .bikini .head p { color: #b8ad9d; }
+  .bikini-grid { display: grid; gap: 36px; align-items: center; }
+  @media (min-width: 820px) { .bikini-grid { grid-template-columns: 0.8fr 1.2fr; } }
+  .bikini img { width: 100%; max-width: 380px; }
+  .bikini blockquote { margin: 0; font: italic 400 clamp(1.5rem, 3.4vw, 2.2rem)/1.3 var(--serif); }
+  .bikini blockquote::before { content: "“"; display: block; font: 700 5rem/0.6 var(--cond); color: var(--red); margin-bottom: 14px; }
+  .bikini cite { display: block; margin-top: 18px; font: 600 1rem/1.3 var(--cond); font-style: normal; letter-spacing: 0.08em; text-transform: uppercase; color: #b8ad9d; }
+  .stars { color: #e3a34a; letter-spacing: 0.1em; }
+
+  /* ---------- visit ---------- */
+  .visit-grid { display: grid; gap: 36px; }
+  @media (min-width: 820px) { .visit-grid { grid-template-columns: 1fr 1.3fr; } }
+  .addr { font: 700 clamp(2rem, 5vw, 3rem)/0.95 var(--cond); text-transform: uppercase; margin: 0 0 18px; }
+  .addr span { display: block; color: var(--ink-soft); font-weight: 500; font-size: 0.55em; letter-spacing: 0.06em; margin-top: 8px; }
+  .visit dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 10px 22px; }
+  .visit dt { font: 600 0.95rem/1.6 var(--cond); text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-soft); }
+  .visit dd { margin: 0; }
+  .btns { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .btn {
+    display: inline-block; text-decoration: none;
+    font: 600 1.05rem/1 var(--cond); letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 14px 20px; border: 2px solid var(--ink);
+  }
+  .btn.solid { background: var(--red); border-color: var(--red); color: #fff; }
+  .btn:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .map { border: 2px solid var(--ink); min-height: 340px; background: var(--paper-2); }
+  .map iframe { display: block; width: 100%; height: 100%; min-height: 340px; border: 0; filter: grayscale(0.35) contrast(1.05); }
+
+  footer { border-top: 1px solid var(--ink); padding: 26px 0 40px; font: 500 0.95rem/1.4 var(--cond); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; }
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap">
+    <nav aria-label="Secciones">
+      <a href="#obrador"><span data-lang="es">Obrador</span><span data-lang="en">Bakery</span></a>
+      <a href="#carta"><span data-lang="es">Carta</span><span data-lang="en">Menu</span></a>
+      <a href="#visita"><span data-lang="es">Cómo llegar</span><span data-lang="en">Visit</span></a>
+    </nav>
+    <a class="bar-name" href="#">Casa Comtal</a>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" data-set="es" aria-pressed="true">ES</button>
+      <button type="button" data-set="en" aria-pressed="false">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="mast">
+    <div class="wrap">
+      <div class="mast-top">
+        <span>Carrer Comtal, 21</span>
+        <span>Ciutat Vella · Barcelona</span>
+      </div>
+      <h1>
+        <span>Casa</span><span>Comtal</span>
+        <small><span data-lang="es">obrador &amp; café</span><span data-lang="en">bakery &amp; coffee</span></small>
+      </h1>
+
+      <div class="mast-grid">
+        <div>
+          <p class="lede">
+            <span data-lang="es">La bollería y el pan se hornean <em>cada día</em> en nuestro obrador. El café, al momento. A dos pasos de Portal de l’Àngel.</span>
+            <span data-lang="en">Pastries and bread are baked <em>every day</em> in our own workshop. Coffee made to order. Two steps from Portal de l’Àngel.</span>
+          </p>
+          <ul class="facts">
+            <li><span data-lang="es">Cerramos</span><span data-lang="en">Closing time</span><b>20:30</b></li>
+            <li><span data-lang="es">Para tomar o llevar</span><span data-lang="en">Eat in or take away</span><b>✓</b></li>
+            <li><span>Google Maps</span><b><span class="stars">★★★★★</span> 5,0 · 122</b></li>
+            <li><span data-lang="es">Teléfono</span><span data-lang="en">Phone</span><b><a href="tel:+34617046695">617 04 66 95</a></b></li>
+          </ul>
+        </div>
+        <div class="hero-photos">
+          <figure>
+            <img src="img/pain-au-chocolat.jpg" width="344" height="448" alt="Pain au chocolat recién horneado sostenido en Carrer Comtal">
+            <figcaption><span data-lang="es">Pain au chocolat, en la calle.</span><span data-lang="en">Pain au chocolat, out on the street.</span></figcaption>
+          </figure>
+          <figure>
+            <img src="img/hojaldre-flores.jpg" width="344" height="448" alt="Hojaldre cuadrado con crema, nata y pétalos de flor comestible, junto a un café con hielo">
+            <figcaption><span data-lang="es">Hojaldre con crema y flores, con un iced latte.</span><span data-lang="en">Cream pastry with flowers and an iced latte.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip" aria-hidden="true">
+    <div class="wrap">
+      <span>Tenim llet fresca</span>
+      <span data-lang="es">Horneado en casa</span><span data-lang="en">Baked in house</span>
+      <span>Espresso 1,80 €</span>
+    </div>
+  </div>
+
+  <section id="obrador">
+    <div class="wrap">
+      <div class="head">
+        <span class="no">01</span>
+        <h2><span data-lang="es">El obrador</span><span data-lang="en">The bakery</span></h2>
+        <p><span data-lang="es">Lo que sale del horno</span><span data-lang="en">What comes out of the oven</span></p>
+      </div>
+      <div class="obrador">
+        <div class="copy">
+          <p data-lang="es">Hojaldre laminado a mano, mantequilla y paciencia. Cada mañana sacamos bandejas de croissants, pain au chocolat y palmeras, y la vitrina se va vaciando a lo largo del día.</p>
+          <p data-lang="en">Hand-laminated dough, butter and patience. Every morning the trays come out — croissants, pain au chocolat, palmiers — and the counter slowly empties through the day.</p>
+          <p data-lang="es">Lo que hay depende del día. Si buscas algo concreto, ven temprano.</p>
+          <p data-lang="en">What’s on depends on the day. If you’re after something in particular, come early.</p>
+          <ul class="case">
+            <li>Croissant</li>
+            <li>Pain au chocolat</li>
+            <li><span data-lang="es">Palmera</span><span data-lang="en">Palmier</span></li>
+            <li><span data-lang="es">Danesa de fruta</span><span data-lang="en">Fruit danish</span></li>
+            <li><span data-lang="es">Hojaldre de crema</span><span data-lang="en">Cream puff pastry</span></li>
+            <li><span data-lang="es">Pan del día</span><span data-lang="en">Daily bread</span></li>
+          </ul>
+        </div>
+        <div class="obrador-photos">
+          <figure>
+            <img src="img/vitrina.jpg" width="344" height="448" alt="Vitrina con croissants, pain au chocolat, palmeras y danesas de mermelada" loading="lazy">
+            <figcaption><span data-lang="es">La vitrina por la mañana.</span><span data-lang="en">The counter in the morning.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="carta" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <span class="no">02</span>
+        <h2><span data-lang="es">La carta</span><span data-lang="en">The menu</span></h2>
+        <p><span data-lang="es">Tal cual está en la pizarra</span><span data-lang="en">Straight off the board</span></p>
+      </div>
+
+      <div class="board">
+        <div class="cols">
+          <div>
+            <h3><span data-lang="es">Café</span><span data-lang="en">Coffee</span></h3>
+            <ul class="items">
+              <li><span class="n">Espresso</span><span class="dots"></span><span class="p">1,80</span></li>
+              <li><span class="n">Espresso doble</span><span class="dots"></span><span class="p">2,30</span></li>
+              <li><span class="n">Tallat</span><span class="dots"></span><span class="p">2,30</span></li>
+              <li><span class="n">Long black</span><span class="dots"></span><span class="p">2,30</span></li>
+              <li><span class="n">Americano / batch brew</span><span class="dots"></span><span class="p">2,70</span></li>
+              <li><span class="n">Latte</span><span class="dots"></span><span class="p">2,60</span></li>
+              <li><span class="n">Flat white</span><span class="dots"></span><span class="p">3,30</span></li>
+              <li><span class="n">Cappuccino</span><span class="dots"></span><span class="p">3,30</span></li>
+              <li><span class="n">Mocca</span><span class="dots"></span><span class="p">4,50</span></li>
+              <li><span class="n">Matcha latte</span><span class="dots"></span><span class="p">4,30</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3><span data-lang="es">Con hielo</span><span data-lang="en">Iced</span></h3>
+            <ul class="items">
+              <li><span class="n">Cafè amb gel</span><span class="dots"></span><span class="p">2,70</span></li>
+              <li><span class="n">Cold brew</span><span class="dots"></span><span class="p">3,00</span></li>
+              <li><span class="n">Iced latte</span><span class="dots"></span><span class="p">3,50</span></li>
+              <li><span class="n">Iced mocca</span><span class="dots"></span><span class="p">5,00</span></li>
+              <li><span class="n">Iced matcha latte</span><span class="dots"></span><span class="p">4,80</span></li>
+            </ul>
+          </div>
+          <div>
+            <h3>Bikinis</h3>
+            <ul class="items">
+              <li><span class="n">Emmental y lacón ahumado<span class="d" data-lang="en">Emmental &amp; smoked ham</span></span><span class="dots"></span><span class="p">5,50</span></li>
+              <li><span class="n">Cuatro quesos<span class="d" data-lang="en">Four cheese</span></span><span class="dots"></span><span class="p">5,50</span></li>
+              <li><span class="n">Sobrasada, brie y miel<span class="d" data-lang="en">Sobrasada, brie &amp; honey</span></span><span class="dots"></span><span class="p">6,50</span></li>
+              <li><span class="n">Croissant bikini</span><span class="dots"></span><span class="p">4,00</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="notes">
+          <span>*Tenim llet fresca<span data-lang="en" style="color:var(--ink-soft)"> — fresh milk</span></span>
+          <span data-lang="es">*La bollería y el pan se hornean cada día en nuestro obrador</span>
+          <span data-lang="en">*Pastries and bread baked daily in our own bakery</span>
+        </div>
+      </div>
+      <p class="menu-foot">
+        <span data-lang="es">Precios en euros, IVA incluido. La bollería varía según el día — pregunta en la barra.</span>
+        <span data-lang="en">Prices in euros, VAT included. Pastries change daily — ask at the counter.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="bikini">
+    <div class="wrap">
+      <div class="head">
+        <span class="no">03</span>
+        <h2><span data-lang="es">El bikini</span><span data-lang="en">The bikini</span></h2>
+        <p><span data-lang="es">Así llamamos aquí al sándwich mixto</span><span data-lang="en">What Barcelona calls a toasted sandwich</span></p>
+      </div>
+      <div class="bikini-grid">
+        <img src="img/bikini.jpg" width="344" height="448" alt="Bikini de cuatro quesos a la plancha, con el queso fundido saliendo" loading="lazy">
+        <div>
+          <blockquote>
+            <span data-lang="es">¡La mejor cafetería del barrio! Los productos son un 1000. Excelente atención, te invita a volver.</span>
+            <span data-lang="en">The best café in the neighbourhood! The products are a 1000/10. Excellent service — it makes you want to come back.</span>
+          </blockquote>
+          <cite><span class="stars">★★★★★</span> &nbsp;<span data-lang="es">Visitante en Google Maps</span><span data-lang="en">Visitor on Google Maps</span></cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="visita" class="visit">
+    <div class="wrap">
+      <div class="head">
+        <span class="no">04</span>
+        <h2><span data-lang="es">Ven a vernos</span><span data-lang="en">Come by</span></h2>
+        <p><span data-lang="es">Metro Catalunya o Urquinaona</span><span data-lang="en">Metro Catalunya or Urquinaona</span></p>
+      </div>
+      <div class="visit-grid">
+        <div>
+          <p class="addr">Carrer Comtal, 21<span>08002 Barcelona · Ciutat Vella</span></p>
+          <dl>
+            <dt><span data-lang="es">Cierre</span><span data-lang="en">Closes</span></dt>
+            <dd>20:30 <small style="color:var(--ink-soft)"><span data-lang="es">(consulta el horario actualizado en Google Maps)</span><span data-lang="en">(check Google Maps for up-to-date hours)</span></small></dd>
+            <dt><span data-lang="es">Teléfono</span><span data-lang="en">Phone</span></dt>
+            <dd><a href="tel:+34617046695">617 04 66 95</a></dd>
+            <dt><span data-lang="es">Servicio</span><span data-lang="en">Service</span></dt>
+            <dd><span data-lang="es">Para tomar aquí o para llevar</span><span data-lang="en">Dine in or take away</span></dd>
+            <dt><span data-lang="es">Precio</span><span data-lang="en">Price</span></dt>
+            <dd><span data-lang="es">1–10 € por persona</span><span data-lang="en">€1–10 per person</span></dd>
+          </dl>
+          <div class="btns">
+            <a class="btn solid" href="https://maps.app.goo.gl/SkTgx5oHXBf8tSKr7" target="_blank" rel="noopener"><span data-lang="es">Cómo llegar</span><span data-lang="en">Directions</span></a>
+            <a class="btn" href="tel:+34617046695"><span data-lang="es">Llamar</span><span data-lang="en">Call</span></a>
+          </div>
+        </div>
+        <div class="map">
+          <iframe title="Mapa: Casa Comtal, Carrer Comtal 21, Barcelona" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Casa+Comtal+Obrador+Caf%C3%A9,+Carrer+Comtal+21,+08002+Barcelona&z=17&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Casa Comtal · Obrador Café</span>
+    <span>Carrer Comtal 21 · 08002 Barcelona</span>
+    <span>LGBTQ+ friendly</span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll('.lang button');
+    function set(lang) {
+      root.lang = lang;
+      buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.set === lang)); });
+      try { localStorage.setItem('cc-lang', lang); } catch (e) {}
+    }
+    buttons.forEach(function (b) { b.addEventListener('click', function () { set(b.dataset.set); }); });
+    var saved = null;
+    try { saved = localStorage.getItem('cc-lang'); } catch (e) {}
+    if (saved === 'en' || saved === 'es') set(saved);
+    else if (!/^(es|ca)/i.test(navigator.language || '')) set('en');
+  })();
+</script>
+</body>
+</html>
